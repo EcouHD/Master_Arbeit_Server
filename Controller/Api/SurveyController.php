@@ -226,23 +226,26 @@ class SurveyController extends BaseController
                     }
                 }
             }
-            
+
             $sum = $radioButton1_counter + $radioButton2_counter + $radioButton3_counter + $radioButton4_counter + $radioButton5_counter;
-            $radioButton1_percentage = $radioButton1_counter / $sum;
-            $radioButton2_percentage = $radioButton2_counter / $sum;
-            $radioButton3_percentage = $radioButton3_counter / $sum;
-            $radioButton4_percentage = $radioButton4_counter / $sum;
-            $radioButton5_percentage = $radioButton5_counter / $sum;
-            // $array_percentages = array($radioButton1_percentage, $radioButton2_percentage, $radioButton3_percentage, $radioButton4_percentage, $radioButton5_percentage);
-            // $highest_percentage = max($array_percentages);
+            if ($sum > 0) {
+                $radioButton1_percentage = $radioButton1_counter / $sum;
+                $radioButton2_percentage = $radioButton2_counter / $sum;
+                $radioButton3_percentage = $radioButton3_counter / $sum;
+                $radioButton4_percentage = $radioButton4_counter / $sum;
+                $radioButton5_percentage = $radioButton5_counter / $sum;
+                // $array_percentages = array($radioButton1_percentage, $radioButton2_percentage, $radioButton3_percentage, $radioButton4_percentage, $radioButton5_percentage);
+                // $highest_percentage = max($array_percentages);
 
 
-           
-            // now we know the most looked radioButton --> change answer in direction to it
-            $weightOfGaze = 0.1;
-            $calculatedAnswer = ($answer + $weightOfGaze * ($radioButton1_percentage * 1 + $radioButton2_percentage * 2 + $radioButton3_percentage * 3 + $radioButton4_percentage * 4 + $radioButton5_percentage * 5)) / (1 + $weightOfGaze);
+
+                // take all looked at radioButtons in the calculation of the answer
+                $weightOfGaze = 0.1;
+                $calculatedAnswer = ($answer + $weightOfGaze * ($radioButton1_percentage * 1 + $radioButton2_percentage * 2 + $radioButton3_percentage * 3 + $radioButton4_percentage * 4 + $radioButton5_percentage * 5)) / (1 + $weightOfGaze);
+            }
         }
 
         return json_encode($calculatedAnswer);
     }
+    
 }
