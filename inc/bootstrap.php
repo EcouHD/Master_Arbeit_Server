@@ -14,6 +14,7 @@ require_once PROJECT_ROOT_PATH . "/Controller/Api/BaseController.php";
 
 require_once PROJECT_ROOT_PATH . "/Model/SurveyModel.php";
 require_once PROJECT_ROOT_PATH . "/Model/UserModel.php";
+require_once PROJECT_ROOT_PATH . "/Model/ResultModel.php";
 
 ?>
 
