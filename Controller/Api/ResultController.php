@@ -19,11 +19,11 @@ class ResultController extends BaseController
 
                 $input = json_decode(file_get_contents('php://input'), true);
 
-                if (isset($input['user_id']) && isset($input['answer']) && isset($input['gazeData'])) {
+                if (isset($input['UUID']) && isset($input['answer']) && isset($input['gazeData'])) {
                     $userModel = new UserModel();
 
                     // get user to have info about positions and size of radioButtons
-                    $user = $userModel->getUser($input['user_id']);
+                    $user = $userModel->getUser($input['UUID']);
 
                     if (!empty($user)) {
                         $answer = $this->calculateAnswer($user[0], $input['gazeData'], $input['answer']);
@@ -40,7 +40,7 @@ class ResultController extends BaseController
                             $responseData = "Updated answer ({$answer}) successfully on server.";
                         }
                     } else {
-                        $responseData = "No user found for user_id: {$input['user_id']} in database.";
+                        $responseData = "No user found for user_id: {$input['UUID']} in database.";
                     }
                 } else {
                     $responseData = "Some input is missing and therefore the request did not succeed.";

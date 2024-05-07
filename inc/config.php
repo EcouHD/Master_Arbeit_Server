@@ -2,7 +2,7 @@
 
 define("DB_HOST", "localhost");
 
-define("DB_USERNAME", "root");
+define("DB_USERNAME", "gazeUser");
 
 define("DB_PASSWORD", "@Christian93");
 
