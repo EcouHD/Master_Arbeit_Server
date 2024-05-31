@@ -71,9 +71,17 @@ class UserController extends BaseController
 
                 $userModel = new UserModel();
 
-                $userModel->createUser($uuid);
+                if ($userModel->getUser($uuid)) {
 
-                $responseData = "Created user successfully.";
+                    $responseData = "User already exists.";
+
+                } else {
+
+                    $userModel->createUser($uuid);
+
+                    $responseData = "Created user successfully.";
+                    
+                }
             } catch (Error $e) {
 
                 $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
