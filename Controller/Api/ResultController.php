@@ -129,7 +129,7 @@ class ResultController extends BaseController
 
                 // take all looked at radioButtons in the calculation of the answer
                 $weightOfGaze = 0.1;
-                $calculatedAnswer = ($answer + $weightOfGaze * ($radioButton1_percentage * 1 + $radioButton2_percentage * 2 + $radioButton3_percentage * 3 + $radioButton4_percentage * 4 + $radioButton5_percentage * 5)) / (1 + $weightOfGaze);
+                $calculatedAnswer = ((1-$weightOfGaze) * $answer + $weightOfGaze * ($radioButton1_percentage * 1 + $radioButton2_percentage * 2 + $radioButton3_percentage * 3 + $radioButton4_percentage * 4 + $radioButton5_percentage * 5));
             }
         }
 
